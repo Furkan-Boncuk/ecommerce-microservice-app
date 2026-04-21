@@ -1,0 +1,16 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:marketly-marketly-marketly-marketly-secret-123456}
+
+logging:
+  level:
+    org.springframework.cloud.gateway: INFO
+    com.marketly.gateway: INFO
+

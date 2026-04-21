@@ -1,0 +1,46 @@
+# Maven / Java build outputs
+**/target/
+**/out/
+
+# Maven wrapper artifacts
+.mvn/wrapper/maven-wrapper.jar
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# VS Code
+.vscode/
+
+# Eclipse / STS
+.project
+.classpath
+.settings/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Environment / local secrets
+.env
+.env.*
+*.local
+
+# Coverage / reports
+**/surefire-reports/
+**/failsafe-reports/
+coverage/
+
+# Docker / runtime leftovers
+*.pid
+*.seed
+*.pid.lock
+
+# Project docs
+/docs/

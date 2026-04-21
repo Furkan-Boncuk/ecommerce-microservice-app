@@ -1,0 +1,44 @@
+services:
+  auth-db:
+    image: postgres:16
+    container_name: marketly-auth-db
+    environment:
+      POSTGRES_DB: auth_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - auth_db_data:/var/lib/postgresql/data
+
+  auth-service:
+    build:
+      context: .
+      dockerfile: auth-service/Dockerfile
+    container_name: marketly-auth-service
+    environment:
+      AUTH_DB_URL: jdbc:postgresql://auth-db:5432/auth_db
+      AUTH_DB_USERNAME: postgres
+      AUTH_DB_PASSWORD: postgres
+      JWT_SECRET: marketly-marketly-marketly-marketly-secret-123456
+      JWT_EXPIRATION_MS: 86400000
+    ports:
+      - "8081:8081"
+    depends_on:
+      - auth-db
+
+  api-gateway:
+    build:
+      context: .
+      dockerfile: api-gateway/Dockerfile
+    container_name: marketly-api-gateway
+    environment:
+      JWT_SECRET: marketly-marketly-marketly-marketly-secret-123456
+    ports:
+      - "8080:8080"
+    depends_on:
+      - auth-service
+
+volumes:
+  auth_db_data:
+
